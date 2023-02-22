@@ -1,5 +1,5 @@
     map $http_user_agent $proxy_backend {
-        default "https://mailconfig.ovh.net";
+        default "http://mailconfig.ovh.net";
         "~*Outlook|Microsoft Office|Windows Mail|Windows Live Mail" "https://ex5.mail.ovh.net";
     }
 
