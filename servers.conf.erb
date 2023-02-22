@@ -1,0 +1,17 @@
+server {
+    listen <%= ENV['PORT'] %>;
+
+    server_name _;
+
+    location / {
+        if ($http_user_agent ~* "(Outlook|Microsoft Office|Windows Mail|Windows Live Mail)") {
+            # Proxy to ex5.mail.ovh.net if user agent contains "Outlook"
+            proxy_pass https://ex5.mail.ovh.net;
+            proxy_set_header Host ex5.mail.ovh.net;
+        } else {
+            # Proxy to mailconfig.ovh.net for all other requests
+            proxy_pass https://mailconfig.ovh.net;
+            proxy_set_header Host mailconfig.ovh.net;
+        }
+    }
+}
